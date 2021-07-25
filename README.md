@@ -19,7 +19,10 @@ Você irá desenvolver uma API REST (sim, nós levamos a arquitetura da aplicaç
 <li>Um traidor não pode negociar os recursos com os demais rebeldes, não pode manipular seu inventário, nem ser exibido em relatórios.</li>
 <li>Um rebelde é marcado como traidor quando, ao menos, três outros rebeldes reportarem a traição.</li>
 <li>Uma vez marcado como traidor, os itens do inventário se tornam inacessíveis (eles não podem ser negociados com os demais).</li>
-<li>Rebeldes não podem Adicionar/Remover itens do seu inventário.</li>
+  </ul>
+  
+<h3>Rebeldes não podem Adicionar/Remover itens do seu inventário.<h3>
+  <ul>
 <li>Seus pertences devem ser declarados quando eles são registrados no sistema. Após isso eles só poderão mudar seu inventário através de negociação com os outros rebeldes.</li>
   </ul>
   
