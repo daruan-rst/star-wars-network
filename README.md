@@ -21,7 +21,7 @@ Você irá desenvolver uma API REST (sim, nós levamos a arquitetura da aplicaç
 <li>Uma vez marcado como traidor, os itens do inventário se tornam inacessíveis (eles não podem ser negociados com os demais).</li>
   </ul>
   
-<h3>Rebeldes não podem Adicionar/Remover itens do seu inventário.<h3>
+<h3>Rebeldes não podem Adicionar/Remover itens do seu inventário.</h3>
   <ul>
 <li>Seus pertences devem ser declarados quando eles são registrados no sistema. Após isso eles só poderão mudar seu inventário através de negociação com os outros rebeldes.</li>
   </ul>
