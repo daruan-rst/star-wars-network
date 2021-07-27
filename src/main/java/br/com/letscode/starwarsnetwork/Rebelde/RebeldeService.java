@@ -1,5 +1,6 @@
 package br.com.letscode.starwarsnetwork.Rebelde;
 
+import br.com.letscode.starwarsnetwork.Inventario.Item;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,4 +23,14 @@ public class RebeldeService {
     public Optional<Rebelde> findByName(String name) throws IOException {
         return repository.findByName(name);
     }
+
+    public void save(Rebelde rebelde)throws IOException{}
+
+
+    public Optional<Rebelde> findByIdRestriction(long id) throws IOException{
+        return repository.findByIdRestriction(id);
+    }
+
+    public void realizarTrade(Trade ofertante, Trade receptor)throws IOException{}
+
 }

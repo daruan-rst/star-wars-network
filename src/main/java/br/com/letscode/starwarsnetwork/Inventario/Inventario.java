@@ -1,16 +1,15 @@
 package br.com.letscode.starwarsnetwork.Inventario;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.List;
-
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Inventario {
+
+    private Long id;
     private List<Item> itens;
 }

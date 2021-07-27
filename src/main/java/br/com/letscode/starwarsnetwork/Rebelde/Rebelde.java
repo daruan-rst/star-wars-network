@@ -16,11 +16,14 @@ import java.util.List;
 public class Rebelde {
 
     @NotEmpty
+    private Long id;
     private String name;
     private int age;
     private GeneroEnum genre;
     private Localizacao location;
     private boolean traitor;
+    private Inventario inventario;
+
 
     public boolean isTraitor() {
         return false;
