@@ -1,10 +1,8 @@
 package br.com.letscode.starwarsnetwork.Rebelde;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @ToString
@@ -12,9 +10,9 @@ import lombok.ToString;
 
 public class Localizacao {
 
-    private double latitude;
-    private double longitude;
-    private String galaxia;
+    private Long latitude;
+    private Long longitude;
+    private Long galaxia;
     private String base;
 
 }

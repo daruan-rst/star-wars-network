@@ -10,6 +10,6 @@ import java.util.List;
 @ToString
 public class Inventario {
 
-    private Long id;
+    private String id;
     private List<Item> itens;
 }
