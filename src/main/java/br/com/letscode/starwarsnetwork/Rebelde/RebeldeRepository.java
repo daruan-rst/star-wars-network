@@ -79,10 +79,9 @@ public class RebeldeRepository {
                         .galaxia(Long.valueOf(token.nextToken()))
                         .base(token.nextToken())
                         .build())
-                .inventario(InventarioRepository.inventarioConvert
+                        .inventario(InventarioRepository.inventarioConvert
                         (InventarioRepository.getIdReturnInventarioLine(id)))
                 .build();
-
         return rebelde;
     }
 
@@ -102,6 +101,14 @@ public class RebeldeRepository {
     public Rebelde adicionar(Rebelde rebelde) throws IOException {
         write(format(rebelde), StandardOpenOption.APPEND);
         return rebelde;
+    }
+
+    public void confirmarTraicao(String idRebelde) {
+        //TODO
+    }
+
+    public long qntDenunciaRebelde(String idRebelde) {
+        //TODO
     }
 
     public void save(Rebelde rebelde)throws IOException{
@@ -232,4 +239,6 @@ public class RebeldeRepository {
         }
         return ofertante;
     }
+
+
 }

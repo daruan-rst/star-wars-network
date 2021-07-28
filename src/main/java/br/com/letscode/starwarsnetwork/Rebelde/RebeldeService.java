@@ -28,13 +28,24 @@ public class RebeldeService {
         return repository.findByName(name);
     }
 
-    public void save(Rebelde rebelde)throws IOException{}
+    public void save(Rebelde rebelde)throws IOException{
+        repository.save(rebelde);
+    }
 
 
     public Optional<Rebelde> findByIdRestriction(String id) throws IOException{
         return repository.findByIdRestriction(id);
     }
 
-    public void realizarTrade(Trade ofertante, Trade receptor)throws IOException{}
+    public void realizarTrade(Trade ofertante, Trade receptor)throws IOException{
+        repository.realizarTrade(ofertante, receptor);
+    }
 
+    public void confirmarTraicao(String idRebelde) {
+         repository.confirmarTraicao(idRebelde);
+    }
+
+    public long qntDenunciaRebelde(String idRebelde) {
+        return repository.qntDenunciaRebelde(idRebelde);
+    }
 }

@@ -9,6 +9,6 @@ import lombok.*;
 @ToString
 
 public class Denuncia {
-    private String rebelName;
-    private String traitorName;
+    private String id;
+    private String idAcusado;
 }
