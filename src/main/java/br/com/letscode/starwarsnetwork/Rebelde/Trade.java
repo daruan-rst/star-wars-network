@@ -12,7 +12,7 @@ import java.util.List;
 @ToString
 
 public class Trade {
-    private Long idRebelde;
+    private String idRebelde;
     private List<Item> itens;
 
 }

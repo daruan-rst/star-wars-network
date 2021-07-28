@@ -8,8 +8,9 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Builder
 public class Inventario {
 
-    private Long id;
+    private String id;
     private List<Item> itens;
 }

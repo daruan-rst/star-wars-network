@@ -1,6 +1,8 @@
 package br.com.letscode.starwarsnetwork.Rebelde;
 
 import br.com.letscode.starwarsnetwork.Inventario.Item;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -8,8 +10,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class RebeldeService {
 
+    @Autowired
     private RebeldeRepository repository;
 
     public Rebelde adicionar(Rebelde rebelde) throws IOException {
@@ -27,7 +31,7 @@ public class RebeldeService {
     public void save(Rebelde rebelde)throws IOException{}
 
 
-    public Optional<Rebelde> findByIdRestriction(long id) throws IOException{
+    public Optional<Rebelde> findByIdRestriction(String id) throws IOException{
         return repository.findByIdRestriction(id);
     }
 
