@@ -1,6 +1,7 @@
 package br.com.letscode.starwarsnetwork.Rebelde;
 
 import br.com.letscode.starwarsnetwork.Inventario.Item;
+import br.com.letscode.starwarsnetwork.Inventario.InventarioRepository;
 import br.com.letscode.starwarsnetwork.Excecoes.NullPointerException;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 
 @Component
 public class RebeldeRepository {
@@ -41,7 +43,13 @@ public class RebeldeRepository {
         try (BufferedReader br = Files.newBufferedReader(path)) {
             rebeldes = br.lines().filter(Objects::nonNull)
                     .filter(Predicate.not(String::isEmpty))
-                    .map(this::convert).collect(Collectors.toList());
+                    .map(linha -> {
+                        try {
+                            return convert(linha);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    return null;}).collect(Collectors.toList());
         }
         return rebeldes;
     }
@@ -56,10 +64,11 @@ public class RebeldeRepository {
                 rebelde.getLocation());
     }
 
-    private Rebelde convert(String linha) {
+    private Rebelde convert(String linha) throws IOException {
         StringTokenizer token = new StringTokenizer(linha, ",");
+        String id  = token.nextToken();
         var rebelde = Rebelde.builder()
-                .id(token.nextToken())
+                .id(id)
                 .name(token.nextToken())
                 .age(Integer.valueOf(token.nextToken()))
                 .genre(GeneroEnum.valueOf(token.nextToken()))
@@ -70,9 +79,9 @@ public class RebeldeRepository {
                         .galaxia(Long.valueOf(token.nextToken()))
                         .base(token.nextToken())
                         .build())
-                //acessa um outro csv
+                        .inventario(InventarioRepository.inventarioConvert
+                        (InventarioRepository.getIdReturnInventarioLine(id)))
                 .build();
-
         return rebelde;
     }
 
