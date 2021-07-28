@@ -16,11 +16,10 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RebeldeRestController {
 
-
+    @Autowired
     private final RebeldeService service;
 
     @GetMapping
-    @ResponseStatus
     public List<Rebelde> listAll() throws IOException {
         return service.listAll();
     }
@@ -39,7 +38,7 @@ public class RebeldeRestController {
 
     @GetMapping("/id")
     @ResponseStatus(HttpStatus.FOUND)
-    public Optional<Rebelde> findByIdRestriction(@RequestParam long id)throws IOException{
+    public Optional<Rebelde> findByIdRestriction(@RequestParam String id)throws IOException{
         return service.findByIdRestriction(id);
     }
 

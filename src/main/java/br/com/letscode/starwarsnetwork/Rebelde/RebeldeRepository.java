@@ -1,7 +1,8 @@
 package br.com.letscode.starwarsnetwork.Rebelde;
 
 import br.com.letscode.starwarsnetwork.Inventario.Item;
-import lombok.SneakyThrows;
+import br.com.letscode.starwarsnetwork.Excecoes.NullPointerException;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
@@ -11,58 +12,71 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.StringTokenizer;
+import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+@Component
 public class RebeldeRepository {
 
 
-    private Path rebelPath;
 
+    private Path path;
     @PostConstruct
     public void init(){
-        final String rebelPath = "src/main/java/br/com/letscode/starwarsnetwork/resources/rebeldes.csv";
-        this.rebelPath = Paths.get(rebelPath);
-    }
 
+        try {
+            String caminho = "src/main/resources/dados/rebeldes.csv";
+            path = Paths.get(caminho);
+            if (!path.toFile().exists()) {
+                Files.createFile(path);
+            }
+        }catch (IOException ioException){
+            ioException.printStackTrace();
+        }
+    }
 
     public List<Rebelde> listAll() throws IOException {
-        List<Rebelde> rebelde;
-        try (BufferedReader br = Files.newBufferedReader(this.rebelPath)){
-            rebelde = br.lines().filter(String::isEmpty)
-                    .map(this::convert)
-                    .collect(Collectors.toList());
+        List<Rebelde> rebeldes;
+        try (BufferedReader br = Files.newBufferedReader(path)) {
+            rebeldes = br.lines().filter(Objects::nonNull)
+                    .filter(Predicate.not(String::isEmpty))
+                    .map(this::convert).collect(Collectors.toList());
         }
-        return rebelde;
+        return rebeldes;
     }
 
-
-
-    private Rebelde convert (String linha) {
-        StringTokenizer token = new StringTokenizer(linha,";");
-        Rebelde rebelde = new Rebelde();
-        rebelde.setName(token.nextToken());
-        rebelde.setAge(Integer.parseInt(token.nextToken()));
-        rebelde.setGenre(GeneroEnum.valueOf(token.nextToken()));
-//        rebelde.setLocation();
-//        rebelde.isTraitor();
-        return rebelde;
-    }
-
-    private String format (Rebelde rebelde){
-        return String.format("%s;%s;%s; \r\n",
+    private String format(Rebelde rebelde) {
+        return String.format("%s,%s,%d,%s,%d,%s\r\n",
+                rebelde.getId(),
                 rebelde.getName(),
                 rebelde.getAge(),
-                rebelde.getGenre());
-//                rebelde.getLocation(),
-//                rebelde.isTraitor());
+                rebelde.getGenre(),
+                rebelde.isTraitor(),
+                rebelde.getLocation());
+    }
+
+    private Rebelde convert(String linha) {
+        StringTokenizer token = new StringTokenizer(linha, ",");
+        var rebelde = Rebelde.builder()
+                .id(token.nextToken())
+                .name(token.nextToken())
+                .age(Integer.valueOf(token.nextToken()))
+                .genre(GeneroEnum.valueOf(token.nextToken()))
+                .isTraitor(Boolean.parseBoolean(token.nextToken()))
+                .location(Localizacao.builder()
+                        .latitude(Long.valueOf(token.nextToken()))
+                        .longitude(Long.valueOf(token.nextToken()))
+                        .galaxia(Long.valueOf(token.nextToken()))
+                        .base(token.nextToken())
+                        .build())
+                .build();
+
+        return rebelde;
     }
 
     private void write (String rebeldeString, StandardOpenOption option) throws IOException {
-        try(BufferedWriter bf = Files.newBufferedWriter(rebelPath, option)){
+        try(BufferedWriter bf = Files.newBufferedWriter(path, option)){
             bf.flush();
             bf.write(rebeldeString);
         }
@@ -92,12 +106,12 @@ public class RebeldeRepository {
         registeredRebeldes.add(rebelde);
     }
 
-    public Optional<Rebelde> findByID(long id) throws IOException{
+    public Optional<Rebelde> findByID(String id) throws IOException{
         List<Rebelde> registeredRebeldes = listAll();
         return registeredRebeldes.stream().filter (rebelde -> rebelde.getId().equals(id)).findFirst();
     }
 
-    public Optional<Rebelde> findByIdRestriction(long id)  throws IOException{
+    public Optional<Rebelde> findByIdRestriction(String id)  throws IOException{
         Optional<Rebelde> rebelde = findByID(id);
 
         if(rebelde == null){
