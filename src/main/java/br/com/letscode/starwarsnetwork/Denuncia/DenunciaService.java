@@ -7,12 +7,14 @@ package br.com.letscode.starwarsnetwork.Denuncia;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.IOException;
+
 public class DenunciaService {
 
     @Autowired
     private DenunciaRepository denunciaRepository;
 
-    public void save(Denuncia denuncia){
+    public void save(Denuncia denuncia) throws IOException {
         denunciaRepository.save(denuncia);
     }
 

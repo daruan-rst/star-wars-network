@@ -41,11 +41,11 @@ public class RebeldeService {
         repository.realizarTrade(ofertante, receptor);
     }
 
-    public void confirmarTraicao(String idRebelde) {
+    public void confirmarTraicao(String idRebelde) throws IOException{
          repository.confirmarTraicao(idRebelde);
     }
 
-    public long qntDenunciaRebelde(String idRebelde) {
+    public long qntDenunciaRebelde(String idRebelde) throws IOException{
         return repository.qntDenunciaRebelde(idRebelde);
     }
 }

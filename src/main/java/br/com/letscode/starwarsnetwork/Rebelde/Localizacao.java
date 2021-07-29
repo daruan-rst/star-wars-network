@@ -14,5 +14,4 @@ public class Localizacao {
     private Long longitude;
     private Long galaxia;
     private String base;
-
 }

@@ -24,6 +24,7 @@ public class Rebelde {
     private GeneroEnum genre;
     private Localizacao location;
     private boolean isTraitor;
+    private long denuncia = 0;
     private Inventario inventario;
 
 

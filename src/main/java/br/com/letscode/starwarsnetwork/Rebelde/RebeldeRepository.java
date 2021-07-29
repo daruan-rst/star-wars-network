@@ -55,12 +55,13 @@ public class RebeldeRepository {
     }
 
     private String format(Rebelde rebelde) {
-        return String.format("%s,%s,%d,%s,%d,%s\r\n",
+        return String.format("%s,%s,%d,%s,%s,%d,%s\r\n",
                 rebelde.getId(),
                 rebelde.getName(),
                 rebelde.getAge(),
                 rebelde.getGenre(),
                 rebelde.isTraitor(),
+                rebelde.getDenuncia(),
                 rebelde.getLocation());
     }
 
@@ -73,6 +74,7 @@ public class RebeldeRepository {
                 .age(Integer.valueOf(token.nextToken()))
                 .genre(GeneroEnum.valueOf(token.nextToken()))
                 .isTraitor(Boolean.parseBoolean(token.nextToken()))
+                .denuncia(Integer.valueOf(token.nextToken()))
                 .location(Localizacao.builder()
                         .latitude(Long.valueOf(token.nextToken()))
                         .longitude(Long.valueOf(token.nextToken()))
@@ -85,7 +87,7 @@ public class RebeldeRepository {
         return rebelde;
     }
 
-    private void write (String rebeldeString, StandardOpenOption option) throws IOException {
+    private void write(String rebeldeString, StandardOpenOption option) throws IOException {
         try(BufferedWriter bf = Files.newBufferedWriter(path, option)){
             bf.flush();
             bf.write(rebeldeString);
@@ -95,7 +97,7 @@ public class RebeldeRepository {
     public Optional<Rebelde> findByName(String name) throws IOException {
         List<Rebelde> registeredRebeldes = listAll();
 
-        return registeredRebeldes.stream().filter (rebelde -> rebelde.getName().equals(name)).findFirst();
+        return registeredRebeldes.stream().filter(rebelde -> rebelde.getName().equals(name)).findFirst();
     }
 
     public Rebelde adicionar(Rebelde rebelde) throws IOException {
@@ -103,12 +105,17 @@ public class RebeldeRepository {
         return rebelde;
     }
 
-    public void confirmarTraicao(String idRebelde) {
-        //TODO
+    public void confirmarTraicao(String idRebelde) throws IOException {
+        Optional<Rebelde> rebelde = findByIdRestriction(idRebelde);
+        rebelde.get().setTraitor(true);
     }
 
-    public long qntDenunciaRebelde(String idRebelde) {
-        //TODO
+    public long qntDenunciaRebelde(String idRebelde) throws IOException{
+        Optional<Rebelde> rebelde = findByIdRestriction(idRebelde);
+
+        rebelde.get().setDenuncia(rebelde.get().getDenuncia()+1);
+
+        return rebelde.get().getDenuncia();
     }
 
     public void save(Rebelde rebelde)throws IOException{
@@ -122,6 +129,7 @@ public class RebeldeRepository {
         rebelde.getInventario().setItens(itens);
 
         registeredRebeldes.add(rebelde);
+        adicionar(rebelde);
     }
 
     public Optional<Rebelde> findByID(String id) throws IOException{
