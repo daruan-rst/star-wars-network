@@ -16,7 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RebeldeRestController {
 
-    @Autowired
     private final RebeldeService service;
 
     @GetMapping
@@ -26,7 +25,7 @@ public class RebeldeRestController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Rebelde adicionar (@Valid @RequestBody Rebelde rebelde) throws IOException {
+    public Rebelde adicionar(@Valid @RequestBody Rebelde rebelde) throws IOException {
         return service.adicionar(rebelde);
     }
 
@@ -40,12 +39,6 @@ public class RebeldeRestController {
     @ResponseStatus(HttpStatus.FOUND)
     public Optional<Rebelde> findByIdRestriction(@RequestParam String id)throws IOException{
         return service.findByIdRestriction(id);
-    }
-
-    @PostMapping("/save")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void save(@Valid @RequestBody Rebelde rebelde)throws IOException {
-        service.save(rebelde);
     }
 
     @PostMapping("/trade")

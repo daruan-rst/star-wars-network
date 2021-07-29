@@ -2,6 +2,7 @@ package br.com.letscode.starwarsnetwork.Denuncia;
 
 import lombok.*;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
