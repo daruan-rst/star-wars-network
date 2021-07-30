@@ -75,7 +75,7 @@ public class DenunciaRepository {
         return denuncia;
     }
 
-    private void write (String rebeldeString, StandardOpenOption option) throws IOException {
+    private void write(String rebeldeString, StandardOpenOption option) throws IOException {
         try(BufferedWriter bf = Files.newBufferedWriter(pathInventario, option)){
             bf.flush();
             bf.write(rebeldeString);
@@ -86,7 +86,6 @@ public class DenunciaRepository {
         write(format(denuncia), StandardOpenOption.APPEND);
         return denuncia;
     }
-
 
     public void save(Denuncia denuncia) throws IOException{
 
@@ -103,7 +102,7 @@ public class DenunciaRepository {
         }
     }
 
-    public void confirmarTraicao(String idRebelde) throws IOException { rebeldeService.confirmarTraicao(idRebelde);}
+    public void confirmarTraicao(String idRebelde) throws IOException {rebeldeService.confirmarTraicao(idRebelde);}
 
     public long qtdDenunciaRebelde(String idRebelde) throws IOException{ return rebeldeService.qntDenunciaRebelde(idRebelde);}
 }

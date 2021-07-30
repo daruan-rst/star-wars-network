@@ -16,7 +16,7 @@ public class DenunciaRestController {
 
     private DenunciaService denunciaService;
 
-    @PostMapping("/save")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void save(@Valid @RequestBody Denuncia denuncia)throws IOException {
         denunciaService.save(denuncia);
