@@ -6,6 +6,15 @@ package br.com.letscode.starwarsnetwork.Relatorio;
  * por rebelde (Ex: 2 armas por rebelde). Pontos perdidos devido a traidores.
  */
 
+import lombok.*;
+
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+
 public class Relatorio {
     private double traitorReport;
     private double rebelReport;

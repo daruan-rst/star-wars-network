@@ -37,9 +37,6 @@ public class RebeldeService {
         return repository.findByIdRestriction(id);
     }
 
-    public void realizarTrade(Trade ofertante, Trade receptor)throws IOException{
-        repository.realizarTrade(ofertante, receptor);
-    }
 
     public void confirmarTraicao(String idRebelde) throws IOException{
          repository.confirmarTraicao(idRebelde);
@@ -48,4 +45,13 @@ public class RebeldeService {
     public long qntDenunciaRebelde(String idRebelde) throws IOException{
         return repository.qntDenunciaRebelde(idRebelde);
     }
+
+    public int totalTraidores(boolean traidor) throws IOException{
+        return  repository.totalTraidores(traidor);
+    }
+
+    public int totalRebeldes() throws IOException{
+        return  repository.totalRebeldes();
+    }
+
 }

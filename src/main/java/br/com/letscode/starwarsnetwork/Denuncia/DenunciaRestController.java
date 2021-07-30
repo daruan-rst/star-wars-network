@@ -14,6 +14,7 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class DenunciaRestController {
 
+    @Autowired
     private DenunciaService denunciaService;
 
     @PostMapping

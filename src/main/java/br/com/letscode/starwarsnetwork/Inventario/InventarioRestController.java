@@ -1,7 +1,9 @@
 package br.com.letscode.starwarsnetwork.Inventario;
 
 
+import br.com.letscode.starwarsnetwork.Rebelde.Trade;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class InventarioRestController {
 
+    @Autowired
     private final InventarioService service;
 
     @GetMapping
@@ -27,5 +30,9 @@ public class InventarioRestController {
         return service.findByIdInventario(id);
     }
 
-
+    @PostMapping("/trade")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void realizarTrade(@RequestBody Trade[] trade) throws IOException{
+        service.realizarTrade(trade[0], trade[1]);
+    }
 }

@@ -1,13 +1,13 @@
-package br.com.letscode.starwarsnetwork.Rebelde;
+package br.com.letscode.starwarsnetwork.Localizacao;
 
 import lombok.*;
 
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-
 public class Localizacao {
 
     private Long latitude;

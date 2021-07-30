@@ -1,12 +1,9 @@
 package br.com.letscode.starwarsnetwork.Denuncia;
 
 
-import br.com.letscode.starwarsnetwork.Inventario.InventarioRepository;
-import br.com.letscode.starwarsnetwork.Rebelde.GeneroEnum;
-import br.com.letscode.starwarsnetwork.Rebelde.Localizacao;
-import br.com.letscode.starwarsnetwork.Rebelde.Rebelde;
 import br.com.letscode.starwarsnetwork.Rebelde.RebeldeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
@@ -22,6 +19,7 @@ import java.util.StringTokenizer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+@Component
 public class DenunciaRepository {
 
     @Autowired

@@ -41,9 +41,4 @@ public class RebeldeRestController {
         return service.findByIdRestriction(id);
     }
 
-    @PostMapping("/trade")
-    @ResponseStatus(HttpStatus.CREATED)
-    public void realizarTrade(@RequestBody Trade[] trade) throws IOException{
-         service.realizarTrade(trade[0], trade[1]);
-    }
 }

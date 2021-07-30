@@ -1,12 +1,11 @@
 package br.com.letscode.starwarsnetwork.Rebelde;
 
 import br.com.letscode.starwarsnetwork.Inventario.Inventario;
-import br.com.letscode.starwarsnetwork.Inventario.Item;
-import jdk.jshell.Snippet;
+import br.com.letscode.starwarsnetwork.Localizacao.Localizacao;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.List;
+
 
 @Builder
 @NoArgsConstructor
@@ -27,8 +26,4 @@ public class Rebelde {
     private long denuncia = 0;
     private Inventario inventario;
 
-
-    public void setLocation() {
-        this.location = location;
-    }
 }
