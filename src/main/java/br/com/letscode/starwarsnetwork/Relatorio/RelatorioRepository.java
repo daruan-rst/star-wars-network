@@ -12,14 +12,14 @@ public class RelatorioRepository {
     @Autowired
     private RebeldeService rebeldeService;
 
-    public Relatorio getRelatorio() throws IOException{
-        Relatorio relatorio = new Relatorio();
-        relatorio.setTraitorReport(calcularPorcentagemTraidores());
-        relatorio.setRebelReport(calcularPorcentagemRebeldes());
-        relatorio.setInventoryReport(calcularQuantidadeMediaRecursos);
-        relatorio.setLostPoints(calcularPontosPerdidos);
-        return relatorio;
-    }
+//    public Relatorio getRelatorio() throws IOException{
+//        Relatorio relatorio = new Relatorio();
+//        relatorio.setTraitorReport(calcularPorcentagemTraidores());
+//        relatorio.setRebelReport(calcularPorcentagemRebeldes());
+//        relatorio.setInventoryReport(calcularQuantidadeMediaRecursos);
+//        relatorio.setLostPoints(calcularPontosPerdidos);
+//        return relatorio;
+//    }
 
     public double calcularPorcentagemTraidores() throws IOException {
         double resultado = ((double) rebeldeService.totalTraidores(true)/100) * rebeldeService.totalRebeldes();

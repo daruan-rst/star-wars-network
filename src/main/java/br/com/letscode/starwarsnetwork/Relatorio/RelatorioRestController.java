@@ -16,9 +16,9 @@ public class RelatorioRestController {
     @Autowired
     private RelatorioService relatorioService;
 
-    @GetMapping
-    public Relatorio getRelatorio() throws IOException {
-        return relatorioService.getRelatorio();
-    }
+//    @GetMapping
+//    public Relatorio getRelatorio() throws IOException {
+//        return relatorioService.getRelatorio();
+//    }
 
 }

@@ -14,4 +14,9 @@ public class Localizacao {
     private Long longitude;
     private Long galaxia;
     private String base;
+
+    @Override
+    public String toString() {
+        return latitude + "," + longitude + "," + galaxia + "," + base;
+    }
 }

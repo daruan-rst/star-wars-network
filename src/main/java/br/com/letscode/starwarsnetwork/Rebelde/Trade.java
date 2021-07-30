@@ -15,5 +15,4 @@ import java.util.List;
 public class Trade {
     private String idRebelde;
     private List<Item> itens;
-
 }

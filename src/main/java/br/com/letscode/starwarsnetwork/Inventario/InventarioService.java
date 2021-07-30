@@ -19,14 +19,6 @@ public class InventarioService {
     @Autowired
     private InventarioRepository repository;
 
-    public List<Inventario> listAll() throws IOException {
-        return repository.listAllInventario();
-    }
-
-    public Optional<Inventario> findByIdInventario(String id) throws IOException{
-        return repository.findByIdInventario(id);
-    }
-
     public void realizarTrade(Trade ofertante, Trade receptor)throws IOException{
         repository.realizarTrade(ofertante, receptor);
     }

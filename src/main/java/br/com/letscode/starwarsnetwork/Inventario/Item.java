@@ -2,12 +2,16 @@ package br.com.letscode.starwarsnetwork.Inventario;
 
 import lombok.*;
 
+import java.security.cert.CertPathBuilder;
+
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
 public class Item {
+
     private String id;
     private String name;
     private int point;
@@ -26,5 +30,9 @@ public class Item {
         }
     }
 
+    @Override
+    public String toString() {
+        return id + "," + name + "," + qnd + "," + point;
+    }
 
 }

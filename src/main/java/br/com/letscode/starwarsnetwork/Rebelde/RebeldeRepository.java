@@ -4,6 +4,7 @@ import br.com.letscode.starwarsnetwork.Inventario.Item;
 import br.com.letscode.starwarsnetwork.Inventario.InventarioRepository;
 import br.com.letscode.starwarsnetwork.Excecoes.NullPointerException;
 import br.com.letscode.starwarsnetwork.Localizacao.Localizacao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +22,9 @@ import java.util.stream.Collectors;
 
 @Component
 public class RebeldeRepository {
+
+    @Autowired
+    private InventarioRepository inventarioRepository;
 
     private Path path;
     @PostConstruct
@@ -54,14 +58,17 @@ public class RebeldeRepository {
     }
 
     private String format(Rebelde rebelde) {
-        return String.format("%s,%s,%d,%s,%s,%d,%s\r\n",
+        String formato = String.format("%s,%s,%d,%s,%s,%d,%s,%s\r\n",
                 rebelde.getId(),
                 rebelde.getName(),
                 rebelde.getAge(),
                 rebelde.getGenre(),
                 rebelde.isTraitor(),
                 rebelde.getDenuncia(),
-                rebelde.getLocation());
+                rebelde.getLocation().toString().replace("(", "").trim().replace(")", "").trim(),
+                rebelde.getInventario().toString().replace("[", "").trim().replace("]", "").trim());
+
+        return formato;
     }
 
     private Rebelde convert(String linha) throws IOException {
@@ -75,14 +82,24 @@ public class RebeldeRepository {
                 .isTraitor(Boolean.parseBoolean(token.nextToken()))
                 .denuncia(Integer.valueOf(token.nextToken()))
                 .location(Localizacao.builder()
-                        .latitude(Long.valueOf(token.nextToken()))
-                        .longitude(Long.valueOf(token.nextToken()))
-                        .galaxia(Long.valueOf(token.nextToken()))
-                        .base(token.nextToken())
+                        .latitude(Long.valueOf(token.nextToken().trim()))
+                        .longitude(Long.valueOf(token.nextToken().trim()))
+                        .galaxia(Long.valueOf(token.nextToken().trim()))
+                        .base(token.nextToken().trim())
                         .build())
-                        .inventario(InventarioRepository.inventarioConvert
-                        (InventarioRepository.getIdReturnInventarioLine(id)))
                 .build();
+        List<Item> itens = new ArrayList<>();
+        while(token.hasMoreTokens()){
+            var item = Item.builder()
+                    .id(token.nextToken().trim())
+                    .name(token.nextToken().trim())
+                    .qnd(Integer.parseInt(token.nextToken().trim()))
+                    .point(Integer.parseInt(token.nextToken().trim()))
+                    .build();
+            itens.add(item);
+        }
+        rebelde.setInventario(itens);
+
         return rebelde;
     }
 
@@ -120,16 +137,22 @@ public class RebeldeRepository {
 
     public void save(Rebelde rebelde)throws IOException{
         List<Rebelde> registeredRebeldes = listAll();
-
-        List<Item> itens = rebelde.getInventario().getItens();
+        List<Item> itens = rebelde.getInventario();
 
         for(int i = 0; i < itens.size(); i++){
             itens.get(i).adicionarPontos();
         }
-        rebelde.getInventario().setItens(itens);
-
+        rebelde.setInventario(itens);
         registeredRebeldes.add(rebelde);
-        adicionar(rebelde);
+        reescreverArquivo(registeredRebeldes);
+    }
+
+    public void reescreverArquivo(List<Rebelde> rebeldes) throws IOException {
+        StringBuilder builder = new StringBuilder();
+        for (Rebelde rebeldeBuilder : rebeldes) {
+            builder.append(format(rebeldeBuilder));
+        }
+        write(builder.toString(), StandardOpenOption.CREATE);
     }
 
     public Optional<Rebelde> findByID(String id) throws IOException{

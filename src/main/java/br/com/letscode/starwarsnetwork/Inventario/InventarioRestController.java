@@ -19,17 +19,6 @@ public class InventarioRestController {
     @Autowired
     private final InventarioService service;
 
-    @GetMapping
-    public List<Inventario> listAll() throws IOException {
-        return service.listAll();
-    }
-
-    @GetMapping("/id")
-    @ResponseStatus(HttpStatus.FOUND)
-    public Optional<Inventario> findByIdInventario(@RequestParam String id) throws IOException {
-        return service.findByIdInventario(id);
-    }
-
     @PostMapping("/trade")
     @ResponseStatus(HttpStatus.CREATED)
     public void realizarTrade(@RequestBody Trade[] trade) throws IOException{
