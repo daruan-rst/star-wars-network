@@ -1,14 +1,18 @@
 package br.com.letscode.starwarsnetwork.Inventario;
 
+import br.com.letscode.starwarsnetwork.Rebelde.Rebelde;
+
 import javax.annotation.PostConstruct;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class InventarioRepository {
 
@@ -28,6 +32,41 @@ public class InventarioRepository {
         }
     }
 
+    public List<Inventario> listAllInventario() throws IOException {
+        List<Inventario> inventarios;
+        try (BufferedReader br = Files.newBufferedReader(pathInventario)) {
+            inventarios = br.lines().filter(Objects::nonNull)
+                    .filter(Predicate.not(String::isEmpty))
+                    .map(linha -> inventarioConvert(linha) ).collect(Collectors.toList());
+        }
+
+    return inventarios;}
+
+    public Optional<Inventario> findByIdInventario(String id) throws IOException{
+        List<Inventario> registeredInventarios = listAllInventario();
+        return registeredInventarios.stream().filter (inventario -> inventario.getId().equals(id)).findFirst();
+    }
+
+    public String format(Inventario inventario){
+        return String.format("%s,%d,%d,%d,%d\r\n",
+                inventario.getId(),
+                inventario.getItens().get(1).getQnd(),
+                inventario.getItens().get(2).getQnd(),
+                inventario.getItens().get(3).getQnd(),
+                inventario.getItens().get(4).getQnd());
+    }
+
+    private void write(String inventarioString, StandardOpenOption option) throws IOException{
+        try(BufferedWriter bf = Files.newBufferedWriter(pathInventario, option)){
+            bf.flush();
+            bf.write(inventarioString);
+        }
+    }
+
+    public Inventario adicionar(Inventario inventario) throws IOException{
+        write(format(inventario), StandardOpenOption.APPEND);
+        return inventario;
+    }
 
     public static Inventario inventarioConvert(String linha) {
         StringTokenizer token = new StringTokenizer(linha, ",");
@@ -54,7 +93,7 @@ public class InventarioRepository {
     Item comida = new Item(id,"Comida",1,qntdItensArray[0]);
     Item agua = new Item(id,"Agua",2,qntdItensArray[1]);
     Item municao = new Item(id,"Municao",3,qntdItensArray[2]);
-    Item armas = new Item(id,"Municao",4,qntdItensArray[3]);
+    Item armas = new Item(id,"Armas",4,qntdItensArray[3]);
 
     List<Item> itens = new ArrayList<>();
     itens.add(1,comida);
