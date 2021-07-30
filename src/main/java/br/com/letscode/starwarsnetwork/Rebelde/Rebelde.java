@@ -27,4 +27,6 @@ public class Rebelde {
     private long denuncia = 0;
     private List<Item> inventario;
 
+    public void ifPresent(Object remove) {
+    }
 }

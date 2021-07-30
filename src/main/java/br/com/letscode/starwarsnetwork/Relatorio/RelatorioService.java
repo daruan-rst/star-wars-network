@@ -14,7 +14,7 @@ public class RelatorioService {
     @Autowired
     private RelatorioRepository relatorioRepository;
 
-//    public Relatorio getRelatorio() throws IOException {
-//        return relatorioRepository.getRelatorio();
-//    }
+    public Relatorio getRelatorio() throws IOException {
+        return relatorioRepository.getRelatorio();
+    }
 }
