@@ -1,7 +1,7 @@
-package br.com.letscode.starwarsnetwork.Rebelde;
+package br.com.letscode.starwarsnetwork.rebelde;
 
-import br.com.letscode.starwarsnetwork.Inventario.Item;
-import br.com.letscode.starwarsnetwork.Localizacao.Localizacao;
+import br.com.letscode.starwarsnetwork.inventario.Item;
+import br.com.letscode.starwarsnetwork.localizacao.Localizacao;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
@@ -28,5 +28,11 @@ public class Rebelde {
     private List<Item> inventario;
 
     public void ifPresent(Object remove) {
+    }
+
+    public void setLocation(long i, long i1, long i2, String terra) {
+    }
+
+    public void setInventario() {
     }
 }

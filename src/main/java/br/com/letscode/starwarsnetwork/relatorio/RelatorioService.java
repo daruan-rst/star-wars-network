@@ -1,4 +1,4 @@
-package br.com.letscode.starwarsnetwork.Relatorio;
+package br.com.letscode.starwarsnetwork.relatorio;
 
 
 import lombok.RequiredArgsConstructor;

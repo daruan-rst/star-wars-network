@@ -1,8 +1,6 @@
-package br.com.letscode.starwarsnetwork.Inventario;
+package br.com.letscode.starwarsnetwork.inventario;
 
 import lombok.*;
-
-import java.security.cert.CertPathBuilder;
 
 @Builder
 @NoArgsConstructor

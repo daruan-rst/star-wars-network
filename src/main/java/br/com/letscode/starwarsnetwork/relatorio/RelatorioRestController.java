@@ -1,4 +1,4 @@
-package br.com.letscode.starwarsnetwork.Relatorio;
+package br.com.letscode.starwarsnetwork.relatorio;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

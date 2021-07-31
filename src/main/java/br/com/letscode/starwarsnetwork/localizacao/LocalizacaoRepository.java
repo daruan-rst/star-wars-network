@@ -1,7 +1,7 @@
-package br.com.letscode.starwarsnetwork.Localizacao;
+package br.com.letscode.starwarsnetwork.localizacao;
 
-import br.com.letscode.starwarsnetwork.Rebelde.Rebelde;
-import br.com.letscode.starwarsnetwork.Rebelde.RebeldeService;
+import br.com.letscode.starwarsnetwork.rebelde.Rebelde;
+import br.com.letscode.starwarsnetwork.rebelde.RebeldeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

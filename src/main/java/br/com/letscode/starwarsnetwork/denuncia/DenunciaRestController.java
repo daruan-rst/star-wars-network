@@ -1,6 +1,5 @@
-package br.com.letscode.starwarsnetwork.Denuncia;
+package br.com.letscode.starwarsnetwork.denuncia;
 
-import br.com.letscode.starwarsnetwork.Rebelde.Rebelde;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

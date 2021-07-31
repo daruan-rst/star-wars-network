@@ -1,7 +1,7 @@
-package br.com.letscode.starwarsnetwork.Denuncia;
+package br.com.letscode.starwarsnetwork.denuncia;
 
 
-import br.com.letscode.starwarsnetwork.Rebelde.RebeldeService;
+import br.com.letscode.starwarsnetwork.rebelde.RebeldeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

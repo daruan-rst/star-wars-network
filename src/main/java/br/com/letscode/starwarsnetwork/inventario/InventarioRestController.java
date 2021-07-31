@@ -1,15 +1,13 @@
-package br.com.letscode.starwarsnetwork.Inventario;
+package br.com.letscode.starwarsnetwork.inventario;
 
 
-import br.com.letscode.starwarsnetwork.Rebelde.Trade;
+import br.com.letscode.starwarsnetwork.rebelde.Trade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 @RequestMapping("/inventario")
 @RestController

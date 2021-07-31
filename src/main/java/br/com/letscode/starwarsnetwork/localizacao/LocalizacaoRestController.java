@@ -1,4 +1,4 @@
-package br.com.letscode.starwarsnetwork.Localizacao;
+package br.com.letscode.starwarsnetwork.localizacao;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package br.com.letscode.starwarsnetwork.Localizacao;
+package br.com.letscode.starwarsnetwork.localizacao;
 
 import lombok.*;
 

@@ -1,6 +1,6 @@
-package br.com.letscode.starwarsnetwork.Relatorio;
+package br.com.letscode.starwarsnetwork.relatorio;
 
-import br.com.letscode.starwarsnetwork.Rebelde.RebeldeService;
+import br.com.letscode.starwarsnetwork.rebelde.RebeldeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

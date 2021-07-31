@@ -1,4 +1,4 @@
-package br.com.letscode.starwarsnetwork.Denuncia;
+package br.com.letscode.starwarsnetwork.denuncia;
 
 import lombok.*;
 

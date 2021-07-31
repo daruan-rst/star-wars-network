@@ -1,6 +1,6 @@
-package br.com.letscode.starwarsnetwork.Rebelde;
+package br.com.letscode.starwarsnetwork.rebelde;
 
-import br.com.letscode.starwarsnetwork.Inventario.Item;
+import br.com.letscode.starwarsnetwork.inventario.Item;
 import lombok.*;
 
 import java.util.List;

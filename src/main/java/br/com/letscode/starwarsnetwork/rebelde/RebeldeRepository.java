@@ -1,9 +1,9 @@
-package br.com.letscode.starwarsnetwork.Rebelde;
+package br.com.letscode.starwarsnetwork.rebelde;
 
-import br.com.letscode.starwarsnetwork.Inventario.Item;
-import br.com.letscode.starwarsnetwork.Inventario.InventarioRepository;
-import br.com.letscode.starwarsnetwork.Excecoes.NullPointerException;
-import br.com.letscode.starwarsnetwork.Localizacao.Localizacao;
+import br.com.letscode.starwarsnetwork.inventario.Item;
+import br.com.letscode.starwarsnetwork.inventario.InventarioRepository;
+import br.com.letscode.starwarsnetwork.excecoes.NullPointerException;
+import br.com.letscode.starwarsnetwork.localizacao.Localizacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -118,6 +118,11 @@ public class RebeldeRepository {
 
     public Rebelde adicionar(Rebelde rebelde) throws IOException {
         write(format(rebelde), StandardOpenOption.APPEND);
+        return rebelde;
+    }
+
+    public Rebelde adicionarRebelde(Rebelde rebelde) throws IOException {
+        write(format(rebelde), StandardOpenOption.TRUNCATE_EXISTING);
         return rebelde;
     }
 

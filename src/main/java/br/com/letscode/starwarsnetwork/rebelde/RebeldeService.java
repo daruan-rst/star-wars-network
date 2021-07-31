@@ -1,6 +1,5 @@
-package br.com.letscode.starwarsnetwork.Rebelde;
+package br.com.letscode.starwarsnetwork.rebelde;
 
-import br.com.letscode.starwarsnetwork.Inventario.Item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

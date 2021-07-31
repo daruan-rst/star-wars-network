@@ -1,8 +1,8 @@
-package br.com.letscode.starwarsnetwork.Inventario;
+package br.com.letscode.starwarsnetwork.inventario;
 
-import br.com.letscode.starwarsnetwork.Rebelde.Rebelde;
-import br.com.letscode.starwarsnetwork.Rebelde.RebeldeService;
-import br.com.letscode.starwarsnetwork.Rebelde.Trade;
+import br.com.letscode.starwarsnetwork.rebelde.Rebelde;
+import br.com.letscode.starwarsnetwork.rebelde.RebeldeService;
+import br.com.letscode.starwarsnetwork.rebelde.Trade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
