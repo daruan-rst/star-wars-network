@@ -136,15 +136,33 @@ public class RebeldeRepository {
 
 
     public void save(Rebelde rebelde)throws IOException{
-        List<Rebelde> registeredRebeldes = listAll();
+
         List<Item> itens = rebelde.getInventario();
 
         for(int i = 0; i < itens.size(); i++){
             itens.get(i).adicionarPontos();
         }
         rebelde.setInventario(itens);
-        registeredRebeldes.add(rebelde);
+        removerItemArquivo(rebelde.getId());
+        adicionar(rebelde);
+    }
+
+    public void removerItemArquivo(String id)throws IOException{
+        List<Rebelde> registeredRebeldes = listAll();
+        List<Rebelde> rebeldesResultante = new ArrayList<>();
+        for(Rebelde rebelde : registeredRebeldes){
+            if(!rebelde.getId().equals(id)){
+                rebeldesResultante.add(rebelde);
+            }
+        }
+        eraseContent();
         reescreverArquivo(registeredRebeldes);
+    }
+
+    public void eraseContent() throws IOException {
+        BufferedWriter writer = Files.newBufferedWriter(path);
+        writer.write("");
+        writer.flush();
     }
 
     public void reescreverArquivo(List<Rebelde> rebeldes) throws IOException {
